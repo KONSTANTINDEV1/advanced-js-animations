@@ -1,0 +1,81 @@
+// NAVIGATION BAR STYLES
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  left: 0;
+  top: 200%;
+  right: 0;
+  z-index: 30;
+  justify-content: space-between;
+  place-items: center;
+
+  // mix-blend-mode: difference;
+  color: white;
+
+  .navbar__logo {
+    font-size: 2rem;
+    pointer-events: none;
+  }
+  .navbar__links {
+    display: flex;
+
+    .navbar__link {
+      margin: 0 15px;
+      font-family: "Helvetica Neue";
+      text-transform: uppercase;
+      overflow: hidden;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        position: relative;
+        font-family: inherit;
+        font-size: 15px;
+        color: #efefef;
+        transition: all 0.5s ease;
+
+        &:hover {
+          color: #fefefe;
+        }
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          width: 100%;
+          background: white;
+          transform: translateX(-102%);
+        }
+        &:hover::after {
+          transition: transform 0.5s ease;
+          transform: translateX(0);
+        }
+
+        &.animate-out::after {
+          transition: transform 0.5s ease;
+          transform: translateX(100%);
+        }
+      }
+    }
+  }
+}
+
+.navbar__mobile {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 40px;
+  // visibility: hidden;
+  cursor: pointer;
+  span {
+    height: 2px;
+    margin: 3px 0;
+    width: 35px;
+    background: white;
+  }
+}

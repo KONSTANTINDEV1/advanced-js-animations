@@ -1,0 +1,50 @@
+.blog {
+  color: white;
+  .chapter {
+    top: 10%;
+  }
+}
+
+.blog__image-container {
+  margin: 10% 50% 0 16.6%;
+  padding-bottom: 50%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  .blog__image {
+    position: absolute;
+    opacity: 1;
+    object-fit: cover;
+    object-position: 50% 50%;
+    height: 150%;
+    width: 100%;
+    bottom: -20%;
+  }
+
+  .blog__image-mask {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    top: 0;
+    background-color: rgb(104, 116, 90);
+  }
+}
+
+.post__date {
+  font-size: 1.6vw;
+  opacity: 0.6;
+}
+.blog__text {
+  position: absolute;
+  left: calc(50vw + 6.6vw);
+  right: calc(6.6vw * 4);
+  top: calc(50% + (10vh / 2)); /* 50% not 50vh becasue blog is not 100vh */
+  transform: translateY(-50%);
+}
+.blog__text h3 {
+  font-size: 3.6vw;
+  line-height: 1.192307692;
+  font-weight: normal;
+  letter-spacing: 0.2vw;
+}

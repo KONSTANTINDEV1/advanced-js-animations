@@ -1,0 +1,166 @@
+// HEADER SECTION STYLES
+
+.header {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  position: relative;
+  flex-direction: column;
+  perspective: 1000px;
+  margin-bottom: 10vw;
+  z-index: 2;
+
+  .header__title {
+    font-family: "Gallery Modern";
+    font-weight: normal;
+    color: #fff;
+    font-size: 7vw;
+    line-height: 7.4vw;
+    z-index: 4;
+    margin-bottom: 0;
+    pointer-events: none;
+
+    span {
+      display: block;
+      font-family: inherit;
+      z-index: 1;
+    }
+  }
+
+  .header__subtitle {
+    z-index: 1;
+    font-size: 1.3vw;
+    line-height: 2vw;
+    text-align: left;
+    color: #fff;
+    letter-spacing: 0.3vw;
+    transform: translateX(-8vw);
+    font-weight: 300;
+    pointer-events: none;
+  }
+
+  .header__decor-circle {
+    border: 1px white solid;
+    border-radius: 100%;
+    width: 23vw;
+    height: 23vw;
+    position: absolute;
+    top: 45vh;
+    left: 27vw;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .header__gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    pointer-events: none;
+    overflow: hidden;
+    box-shadow: rgb(black, 3);
+
+    img {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: scale(1.5);
+      position: absolute;
+      object-fit: cover;
+      object-position: 50% 50%;
+      pointer-events: none;
+      opacity: 0.8;
+      z-index: 2;
+    }
+  }
+  .header__gallery-image--l {
+    width: 18vw;
+    padding-bottom: 26vw;
+  }
+  .header__gallery-image--m {
+    width: 18vw;
+    padding-bottom: 26.55vw;
+  }
+  .header__gallery-image--s {
+    width: 16vw;
+    padding-bottom: 25vw;
+  }
+
+  .header__gallery--left .header__gallery-image {
+    z-index: 1;
+    &:nth-child(1) {
+      top: 17vh;
+      left: 15vw;
+      z-index: 1;
+    }
+    &:nth-child(2) {
+      top: 30vh;
+      left: 6vw;
+      z-index: 2;
+    }
+    &:nth-child(3) {
+      top: 52vh;
+      left: 14vw;
+      z-index: 1;
+    }
+  }
+
+  .header__gallery--right .header__gallery-image {
+    z-index: 1;
+    &:nth-child(1) {
+      top: 15vh;
+      left: auto;
+      right: 18vw;
+      width: 24vw;
+      padding-bottom: 21vw;
+      z-index: 1;
+    }
+
+    &:nth-child(2) {
+      top: 27vh;
+      left: auto;
+      right: 10vw;
+      z-index: 2;
+    }
+    &:nth-child(3) {
+      top: 48vh;
+      left: auto;
+      right: 15vw;
+      width: 20vw;
+      // padding-bottom: 20vw;
+      z-index: 1;
+    }
+  }
+}
+
+.fill-background {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* =Header Gallery (random image proportion)
+    Calculate aspect by setting a width first, then adjust padding bottom.
+    Example for image that you want to show as 16/9 - landscape
+    width: 24vw, padding-bottom: (9/16) * width = 13.5
+
+    Example for image that you want to show as 9/16 - portrait
+    width: 24vw, padding-bottom: (16/9) * width = 42.6
+
+    Have fun:)
+
+  */
