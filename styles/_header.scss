@@ -1,4 +1,7 @@
 // HEADER SECTION STYLES
+:root {
+  --bg-green: rgb(104, 116, 90);
+}
 
 .header {
   min-height: 100vh;
@@ -142,6 +145,10 @@
   width: 100%;
   height: 100%;
   position: fixed;
+  z-index: -1;
+  will-change: background-color;
+  transition: background-color 0.3s linear;
+  background-color: var(--bg-green);
 }
 
 @keyframes rotation {

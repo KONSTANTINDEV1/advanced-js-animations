@@ -2,11 +2,9 @@
 @import "./preloader";
 @import "./blog";
 @import "./header";
-@import "./howwework";
+@import "./portfolio";
+@import "./contact";
 @import "./fonts";
-
-
-
 
 html,
 body {
@@ -18,7 +16,8 @@ body {
 
 body {
   position: relative;
-  background-color: rgb(104, 116, 90);
+
+
 }
 .c-scrollbar_thumb {
   display: none;
@@ -47,6 +46,7 @@ span {
   padding: 40px 30px;
   width: 100%;
   position: relative;
+
 }
 
 .max-w-container {

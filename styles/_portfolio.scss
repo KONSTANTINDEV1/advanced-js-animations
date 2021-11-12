@@ -1,0 +1,108 @@
+.portfolio {
+  // HOW WE WORK START
+  color: white;
+  .chapter {
+    top: calc(10vh * 2);
+  }
+
+  .portfolio__items {
+    margin-top: 10vw;
+  }
+
+  .portfolio__fixed-nav {
+    position: absolute;
+    top: calc(10vh * 3);
+    left: 6.6vw;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      overflow: hidden;
+
+      a::before {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 1.3vw;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 0;
+      }
+
+      &.is-active a {
+        // transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-family: "Gallery Modern";
+      position: relative;
+      padding-left: 1.8vw;
+      // transform: translateX(-1.8vw);
+      display: block;
+      opacity: 0.4;
+      transition: all 0.3s cubic-bezier(0.5, 0.7, 0.4, 1);
+    }
+  }
+
+  .portfolio-item__heading {
+    font-family: "Gallery Modern";
+    position: relative;
+    z-index: 2; /* fix for Safari */
+
+    h3,
+    p {
+      position: absolute;
+      left: 25vw;
+      top: calc(10vh * -1.25);
+      font-size: 3.6vw;
+      font-weight: normal;
+      margin: 0;
+      white-space: nowrap;
+      color: white;
+    }
+
+    p {
+      font-size: 1.6vw;
+      opacity: 0.4;
+      top: calc(10vh * -1.75);
+    }
+  }
+  // HOW WE WORK END
+
+  .portfolio-item__image {
+    width: calc(50vw + 6.6vw);
+    margin: 0 6.6vw 0 30vw;
+    padding-bottom: 33.33vw;
+    background-color: #000000;
+    overflow: hidden;
+    position: relative;
+    z-index: 1; /* fix for Safari */
+
+    img {
+      position: absolute;
+      opacity: 0.9;
+      height: 150%;
+      transform: scale(1.2);
+      width: 100%;
+      object-fit: cover;
+      object-position: 50% 50%;
+      top: -40%;
+      left: 0;
+    }
+  }
+
+  .portfolio-item__text {
+    color: white;
+    line-height: 1.7;
+    margin: 1vw calc(30vw + 6.6vw) 10vh 30vw;
+  }
+}

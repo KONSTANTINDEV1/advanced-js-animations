@@ -16,7 +16,8 @@
 
   .navbar__logo {
     font-size: 2rem;
-    pointer-events: none;
+    // pointer-events: none;
+    cursor: pointer;
   }
   .navbar__links {
     display: flex;

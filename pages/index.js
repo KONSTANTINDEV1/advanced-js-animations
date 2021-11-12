@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-import Head from "next/head";
+
 import SplitText from "../utils/splittext.js";
 import { useEffect, useState } from "react";
 import useLocoScroll from "../hooks/useLocoScroll.js";
@@ -10,13 +10,20 @@ import Navbar from "../components/Navbar.js";
 import Header from "../components/Header.js";
 import Preloader from "../components/Preloader.js";
 import Blog from "../components/Blog.js";
-import HowWeWork from "../components/HowWeWork.js";
+import Portfolio from "../components/Portfolio.js";
+import Contact from "../components/Contact.js";
 
 export default function Home() {
-  const [loader, setLoader] = useState(true);
-  useLocoScroll(loader);
+  const [preLoader, setPreLoader] = useState(true);
+
+  useLocoScroll(preLoader);
   useEffect(() => {
     setTimeout(() => {
+
+      // TEXT SPLITTING
+
+
+
       // NAVLINK ANIMATION ::AFTER
       const animNavLinks = () => {
         const navLinks = gsap.utils.toArray(".navbar a");
@@ -31,7 +38,34 @@ export default function Home() {
       };
       animNavLinks();
 
+      // DEFINE SCROLL CONTAINER FOR ALL GSAP ANIMATIONS
       const scrollContainer = document.querySelector(".scroll-container");
+
+      gsap.to(".navbar__link ", {
+        yPercent: 20,
+        autoAlpha: 0,
+        duration: 1,
+        stagger: 0.8,
+        scrollTrigger: {
+          trigger: ".navbar",
+          start: "10%,10%",
+          scrub: 0.8,
+          scroller: scrollContainer,
+        },
+      });
+
+      gsap.from(".navbar__mobile", {
+        opacity: 0,
+        xPercent: 40,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "5% top",
+          end: "15%",
+          scrub: 1,
+          scroller: scrollContainer,
+        },
+      });
 
       // HEADER ANIMATIONS
       const animHeaderTilt = () => {
@@ -40,12 +74,16 @@ export default function Home() {
         header.addEventListener("mousemove", moveImages);
       };
 
+      // CREATE FUNCTION TO GET EVENT VALUES FOR ANIM-HEADER
       function moveImages(e) {
+        console.log(e);
+        // GET THE VALUES FROM THE EVENT
         const { offsetX, offsetY, target } = e;
+
         // FIND THE CURRENT SIZE OF THE HEADER
         const { clientWidth, clientHeight } = target;
 
-        // GET 00 IN THE CENTER OF THE SCREEN
+        // GET 0 0 IN THE CENTER OF THE SCREEN
         const xPos = offsetX / clientWidth - 0.5;
         const yPos = offsetY / clientHeight - 0.5;
 
@@ -58,7 +96,8 @@ export default function Home() {
           ".header__gallery--right .header__gallery-image"
         );
 
-        const modifier = (index) => index * 1.2 + 0.6;
+        // CREATE MODIFIER TO INCREASE HEADER IMAGE MOVEMENT
+        const modifier = (index) => index * 2 + 0.6;
 
         // ATTACH GSAP TO ALL IMAGES ON LEFT TO MOVE
         leftImages.forEach((image, index) => {
@@ -94,7 +133,7 @@ export default function Home() {
 
       animHeaderTilt();
 
-      // BLOG GSAP ANIMTAIONS
+      // PARALLAX GSAP ANIMTAIONS
 
       gsap.utils.toArray(".with-parallax").forEach((section) => {
         const image = section.querySelector("img");
@@ -135,57 +174,18 @@ export default function Home() {
         });
       });
 
-      // HOW WE WORK ANIMATIONS
-
-      gsap.to(".fixed-nav", {
+      // PORTFOLIO ANIMATIONS
+      gsap.to(".portfolio__fixed-nav", {
         scrollTrigger: {
-          trigger: ".fixed-nav",
+          trigger: ".portfolio__fixed-nav",
           start: "top center",
-          endTrigger: "#stage4",
+          endTrigger: "#portfolio4",
           end: "center center",
           pin: true,
           scroller: scrollContainer,
           ease: "power2",
         },
       });
-
-      gsap.to(".navbar__link ", {
-        yPercent: 20,
-        autoAlpha: 0,
-        duration: 1,
-        stagger: 0.8,
-        scrollTrigger: {
-          trigger: ".navbar",
-          start: "10%,10%",
-          scrub: 0.8,
-          scroller: scrollContainer,
-        },
-      });
-
-      gsap.from(".navbar__mobile", {
-        opacity: 0,
-        xPercent: 40,
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".hero",
-          start: "5% top",
-          end: "15%",
-          scrub: 1,
-          scroller: scrollContainer,
-        },
-      });
-
-      // TEXT SPLITTING
-      const preloadTextParent = new SplitText(".preloader__title", {
-        type: "lines",
-        linesClass: "preloadParent",
-      });
-      const preloadTextChildren = new SplitText(".preloadParent", {
-        type: "chars",
-        charsClass: "preloadChildren",
-      });
-
-      // GSAP ANIMATIONS
 
       // PRELOADER ANIMATION
       let tl = gsap
@@ -256,6 +256,7 @@ export default function Home() {
       <Preloader />
       {/* NAVIGATION MENU */}
       <Navbar />
+
       <div data-scroll-container className="scroll-container">
         {/* HERO SECTION */}
         <Header />
@@ -263,9 +264,14 @@ export default function Home() {
         {/* BLOG SECTION */}
         <Blog />
 
-        {/* HOW WE WORK */}
-        <HowWeWork />
+        {/* PORTFOLIO */}
+        <Portfolio />
+
+        {/* CONTACT */}
+
+        <Contact />
       </div>
+      <aside className="fill-background"></aside>
     </main>
   );
 }
