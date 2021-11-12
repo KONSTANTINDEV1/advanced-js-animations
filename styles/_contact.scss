@@ -14,11 +14,15 @@
     font-family: "Gallery Modern";
     font-weight: normal;
     color: #fff;
-    font-size: clamp(7vw,10vw,7vw);
+    font-size: clamp(7vw, 10vw, 7vw);
     line-height: 7.4vw;
     z-index: 4;
     margin-bottom: 0;
     pointer-events: none;
+
+    .contact__title-parent {
+      overflow: hidden;
+    }
 
     span {
       display: block;

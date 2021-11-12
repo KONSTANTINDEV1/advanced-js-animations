@@ -2,7 +2,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-
 import SplitText from "../utils/splittext.js";
 import { useEffect, useState } from "react";
 import useLocoScroll from "../hooks/useLocoScroll.js";
@@ -19,10 +18,26 @@ export default function Home() {
   useLocoScroll(preLoader);
   useEffect(() => {
     setTimeout(() => {
+      // DEFINE SCROLL CONTAINER FOR ALL GSAP ANIMATIONS
+      const scrollContainer = document.querySelector(".scroll-container");
 
       // TEXT SPLITTING
+      const contactTitle = new SplitText(".contact__title", {
+        type: "lines",
+        linesClass: "contact__title-parent",
+      });
 
-
+      gsap.from(".contact__title-span", {
+        y: 80,
+        stagger: 0.2,
+        ease: "power2.ease",
+        scrollTrigger: {
+          trigger: ".contact",
+          start: "top center",
+          toggleActions: "play none none reverse",
+          scroller: scrollContainer,
+        },
+      });
 
       // NAVLINK ANIMATION ::AFTER
       const animNavLinks = () => {
@@ -37,9 +52,6 @@ export default function Home() {
         });
       };
       animNavLinks();
-
-      // DEFINE SCROLL CONTAINER FOR ALL GSAP ANIMATIONS
-      const scrollContainer = document.querySelector(".scroll-container");
 
       gsap.to(".navbar__link ", {
         yPercent: 20,
@@ -246,14 +258,14 @@ export default function Home() {
           "-=1.5"
         );
 
-      ScrollTrigger.refresh;
+      ScrollTrigger.refresh();
     }, 100);
   }, []);
 
   return (
     <main>
       {/* PRELOADER */}
-      <Preloader />
+      {/* <Preloader /> */}
       {/* NAVIGATION MENU */}
       <Navbar />
 
