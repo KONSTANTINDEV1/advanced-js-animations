@@ -1,3 +1,10 @@
+
+
+
+https://user-images.githubusercontent.com/57772514/141650345-4d5a6107-97a8-4031-8f01-41c396d88d43.mp4
+
+
+
 HERE IS THE GUIDE THAT I CREATED FOR ANY OF YOU THAT GET STUCK IMPLEMENTING THIS IN YOUR OWN PROJECTS:
 https://geode-thrush-2c4.notion.site/A-GUIDE-TO-ADVANCED-JAVASCRIPT-ANIMATIONS-3e0e1b05e0904ba88562b429277eb917
 
@@ -6,7 +13,6 @@ Feel free to reach out if you have any recommendations on changes I should make.
 
 
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
