@@ -1,3 +1,5 @@
+// CREDIT GOES TO https://github.com/Jab2870/splittext
+
 /* eslint-disable */
 !(function (D, u) {
   "object" == typeof exports && "undefined" != typeof module

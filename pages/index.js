@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+// MAKES SURE NOT TO FORGET TO REGISTER SCROLL TRIGGER OTHERWISE TREESHAKING WILL GET RID OF IT WHEN THE WEBSITE IS COMPILED
 gsap.registerPlugin(ScrollTrigger);
 
 import SplitText from "../utils/splittext.js";
@@ -13,10 +14,12 @@ import Portfolio from "../components/Portfolio.js";
 import Contact from "../components/Contact.js";
 
 export default function Home() {
+  // CREATE STATE TO PASS DOWN TO THE LOCOMOTIVE HOOK IF YOU WANT TO RENDER LOCOMOTIVE AFTER THE PRELOADER HAS FINISHED
   const [preLoader, setPreLoader] = useState(true);
 
   useLocoScroll(preLoader);
   useEffect(() => {
+    // CREATE A TIMEOUT TO GIVE THE DOM ELEMENTS TIME TO RENDER
     setTimeout(() => {
       // DEFINE SCROLL CONTAINER FOR ALL GSAP ANIMATIONS
       const scrollContainer = document.querySelector(".scroll-container");
@@ -39,7 +42,7 @@ export default function Home() {
         },
       });
 
-      // NAVLINK ANIMATION ::AFTER
+      // NAVLINK ANIMATION TO ANIMATE THE ::AFTER PSEUDO SELECTOR
       const animNavLinks = () => {
         const navLinks = gsap.utils.toArray(".navbar a");
         navLinks.forEach((link) => {
@@ -81,25 +84,26 @@ export default function Home() {
 
       // HEADER ANIMATIONS
       const animHeaderTilt = () => {
-        // ATTACH EVENT LISTENER TO HEADER TO GET CLIENT DETAILS
+        // ATTACH EVENT LISTENER TO HEADER TO GET CLIENT DETAILS THAT YOU WILL FIND WHEN YOU LOG THE moveImages EVENT below
         const header = document.querySelector(".header");
         header.addEventListener("mousemove", moveImages);
       };
 
-      // CREATE FUNCTION TO GET EVENT VALUES FOR ANIM-HEADER
+      // CREATE A FUNCTION TO GET EVENT VALUES FOR ANIM-HEADER
       function moveImages(e) {
         console.log(e);
-        // GET THE VALUES FROM THE EVENT
+
+        // GET THE offsetX, offsetY VALUES FROM THE EVENT
         const { offsetX, offsetY, target } = e;
 
-        // FIND THE CURRENT SIZE OF THE HEADER
+        // FIND THE CURRENT SIZE OF THE WINDOW
         const { clientWidth, clientHeight } = target;
 
-        // GET 0 0 IN THE CENTER OF THE SCREEN
+        // GET THE VIEWPORTS CENTER VALUE
         const xPos = offsetX / clientWidth - 0.5;
         const yPos = offsetY / clientHeight - 0.5;
 
-        // GET ALL IMAGES LEFT AND RIGHT
+        // GET ALL IMAGES LEFT AND RIGHT AND STORE THEM IN THEIR OWN ARRAY FOR EACH SIDE SO THAT WE CAN LOOP THROUGH THEM
         const leftImages = gsap.utils.toArray(
           ".header__gallery--left .header__gallery-image"
         );
@@ -264,8 +268,8 @@ export default function Home() {
 
   return (
     <main>
-      {/* PRELOADER */}
-      {/* <Preloader /> */}
+      {/* PRELOADER MUST BE ON TOP TO RENDER BEFORE THE NAVBAR OTHERWISE THEY WILL FIGHT FOR THE SAME FIXED POSITION */}
+      <Preloader />
       {/* NAVIGATION MENU */}
       <Navbar />
 
